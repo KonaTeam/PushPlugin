@@ -16,7 +16,10 @@ static char launchNotificationKey;
 
 - (id) getCommandInstance:(NSString*)className
 {
-	return [self.viewController getCommandInstance:className];
+	// a standard cordova app can use self.viewController here to get to the cdvvc, but our app
+    // needs to get to the cdvvc in the main webview specifically
+    //return [self.viewController getCommandInstance:className];
+    return [self.mainView.cdvvc getCommandInstance:className];
 }
 
 // its dangerous to override a method from within a category.
